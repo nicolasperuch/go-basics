@@ -71,7 +71,6 @@ func TestDeal(t *testing.T) {
 	EXPECTED_HAND_SIZE := 3
 	EXPECTED_REMAINING_DECK_SIZE := 17
 
-
 	if handByDeal.size() != EXPECTED_HAND_SIZE {
 		t.Errorf("Expected hand dy deal length to be %v, but got %v", EXPECTED_HAND_SIZE, handByDeal.size())
 	}
