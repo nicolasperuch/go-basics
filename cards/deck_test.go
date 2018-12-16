@@ -1,6 +1,9 @@
 package main
 
-import "testing"
+import (
+	"os"
+	"testing"
+)
 
 func TestNewDeck(t *testing.T) {
 	deck := newDeck()
@@ -78,4 +81,18 @@ func TestDeal(t *testing.T) {
 	if reaminingDeckByDeal.size() != EXPECTED_REMAINING_DECK_SIZE {
 		t.Errorf("Expected remaining deck by deal length to be %v, but got %v", EXPECTED_REMAINING_DECK_SIZE, reaminingDeckByDeal.size())
 	}
+}
+
+func TestSaveToDeckAndNewDeckFromFile(t *testing.T) {
+	EXPECTED_SIZE := 20
+
+	os.Remove("_decktesting")
+	deck := newDeck()
+	deck.saveToFile("_decktesting")
+	loadedDeck := newDeckFromFile("_decktesting")
+
+	if len(loadedDeck) != 20 {
+		t.Errorf("Expected loaded deck length to be %v, but got %v", EXPECTED_SIZE, loadedDeck.size())
+	}
+	os.Remove("_decktesting")
 }
